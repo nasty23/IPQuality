@@ -5,7 +5,7 @@ current_bash_version=$(bash --version|head -n 1|awk -F ' ' '{for (i=1; i<=NF; i+
 if [ "$current_bash_version" = "0" ]||[ "$current_bash_version" = "1" ]||[ "$current_bash_version" = "2" ]||[ "$current_bash_version" = "3" ];then
 echo "ERROR: Bash version is lower than 4.0!"
 echo "Tips: Run the following script to automatically upgrade Bash."
-echo "bash <(curl -sL https://raw.githubusercontent.com/nasty23/IPQuality/main/ref/upgrade_bash.sh)"
+echo "bash <(curl -sL https://raw.githubusercontent.com/xykt/IPQuality/main/ref/upgrade_bash.sh)"
 exit 0
 fi
 }
@@ -98,9 +98,9 @@ declare Media_Cookie
 declare IATA_Database
 shelp_lines=(
 "IP QUALITY CHECK SCRIPT IP质量体检脚本"
-"Interactive Interface:  bash <(curl -sL https://IP.Check.Place) -EM"
-"交互界面：              bash <(curl -sL https://IP.Check.Place) -M"
-"Parameters 参数运行: bash <(curl -sL https://IP.Check.Place) [-4] [-6] [-f] [-h] [-j] [-i iface] [-l language] [-n] [-x proxy] [-y] [-E] [-M]"
+"Interactive Interface:  bash <(curl -sL https://raw.githubusercontent.com/nasty23/IPQuality/main/ip.sh) -EM" # <--- 清理后的链接
+"交互界面：              bash <(curl -sL https://raw.githubusercontent.com/nasty23/IPQuality/main/ip.sh) -M" # <--- 清理后的链接
+"Parameters 参数运行: bash <(curl -sL https://raw.githubusercontent.com/nasty23/IPQuality/main/ip.sh) [-4] [-6] [-f] [-h] [-j] [-i iface] [-l language] [-n] [-x proxy] [-y] [-E] [-M]" # <--- 清理后的链接
 "            -4                             Test IPv4                                  测试IPv4"
 "            -6                             Test IPv6                                  测试IPv6"
 "            -f                             Show full IP on reports                    报告展示完整IP地址"
@@ -147,7 +147,7 @@ sinfo[ldnsbl]=28
 shead[title]="IP QUALITY CHECK REPORT: "
 shead[title_lite]="IP QUALITY CHECK REPORT(LITE): "
 shead[ver]="Version: $script_version"
-shead[bash]="bash <(curl -sL https://Check.Place) -EI"
+shead[bash]="bash <(curl -sL https://raw.githubusercontent.com/nasty23/IPQuality/main/ip.sh) -EI" # <--- 清理后的链接
 shead[git]="https://github.com/xykt/IPQuality"
 shead[time]=$(date -u +"Report Time: %Y-%m-%d %H:%M:%S UTC")
 shead[ltitle]=25
@@ -244,7 +244,7 @@ smail[marked]="$Font_Suffix${Font_Yellow}Marked $Font_B"
 smail[blacklisted]="$Font_Suffix${Font_Red}Blacklisted $Font_B"
 stail[stoday]="IP Checks Today: "
 stail[stotal]="; Total: "
-stail[thanks]=". Thanks for running xy scripts!"
+stail[thanks]=". Thanks for running your scripts!" # <--- 修正了感谢语
 stail[link]="${Font_I}Report Link: $Font_U"
 ;;
 "cn")swarn[1]="错误：不支持的参数！"
@@ -271,8 +271,8 @@ sinfo[ldnsbl]=21
 shead[title]="IP质量体检报告："
 shead[title_lite]="IP质量体检报告(Lite)："
 shead[ver]="脚本版本：$script_version"
-shead[bash]="bash <(curl -sL https://Check.Place) -I"
-shead[git]="https://github.com/xykt/IPQuality"
+shead[bash]="bash <(curl -sL https://raw.githubusercontent.com/nasty23/IPQuality/main/ip.sh) -I" # <--- 清理后的链接
+shead[git]="https://github.com/nasty23/IPQuality" # <--- 建议指向您的 Fork
 shead[time]=$(TZ="Asia/Shanghai" date +"报告时间：%Y-%m-%d %H:%M:%S CST")
 shead[ltitle]=16
 shead[ltitle_lite]=22
@@ -368,12 +368,13 @@ smail[marked]="$Font_Suffix$Font_Yellow已标记 $Font_B"
 smail[blacklisted]="$Font_Suffix$Font_Red黑名单 $Font_B"
 stail[stoday]="今日IP检测量："
 stail[stotal]="；总检测量："
-stail[thanks]="。感谢使用xy系列脚本！"
+stail[thanks]="。感谢使用您的脚本！" # <--- 修正了感谢语
 stail[link]="$Font_I报告链接：$Font_U"
 ;;
 *)echo -ne "ERROR: Language not supported!"
 esac
 }
+# 移除了 countRunTimes 函数
 show_progress_bar(){
 show_progress_bar_ "$@" 1>&2
 }
@@ -688,7 +689,7 @@ zoom_level=13
 elif [[ $radius -gt 250 ]];then
 zoom_level=14
 fi
-echo "https://check.place/$lat,$lon,$zoom_level,$YY"
+echo "https://maps.google.com/maps?q=$lat,$lon&z=$zoom_level" # <--- 替换为 Google Maps 链接
 }
 db_maxmind(){
 local temp_info="$Font_Cyan$Font_B${sinfo[database]}${Font_I}Maxmind $Font_Suffix"
@@ -2211,9 +2212,9 @@ esac
 done
 if [[ $mode_menu -eq 1 ]];then
 if [[ $YY == "cn" ]];then
-eval "bash <(curl -sL https://Check.Place) -I"
+eval "bash <(curl -sL https://raw.githubusercontent.com/nasty23/IPQuality/main/ip.sh) -I" # <--- 清理后的链接
 else
-eval "bash <(curl -sL https://Check.Place) -EI"
+eval "bash <(curl -sL https://raw.githubusercontent.com/nasty23/IPQuality/main/ip.sh) -EI" # <--- 清理后的链接
 fi
 exit 0
 fi
@@ -2509,7 +2510,7 @@ show_mail $2
 show_tail)
 fi
 local report_link=""
-# 仅在需要本地 JSON 或报告文件输出时，才调用 save_json
+# 仅在需要本地 JSON 或报告文件输出时，才调用 save_json (已删除 privacy 依赖)
 [[ mode_json -eq 1 || mode_output -eq 1 ]]&&save_json
 # 移除了将报告上传到 upload.check.place 的 curl 命令
 # 移除了报告链接的显示
