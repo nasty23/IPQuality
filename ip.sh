@@ -5,7 +5,7 @@ current_bash_version=$(bash --version|head -n 1|awk -F ' ' '{for (i=1; i<=NF; i+
 if [ "$current_bash_version" = "0" ]||[ "$current_bash_version" = "1" ]||[ "$current_bash_version" = "2" ]||[ "$current_bash_version" = "3" ];then
 echo "ERROR: Bash version is lower than 4.0!"
 echo "Tips: Run the following script to automatically upgrade Bash."
-echo "bash <(curl -sL https://raw.githubusercontent.com/xykt/IPQuality/main/ref/upgrade_bash.sh)"
+echo "bash <(curl -sL https://raw.githubusercontent.com/nasty23/IPQuality/main/ref/upgrade_bash.sh)"
 exit 0
 fi
 }
@@ -98,28 +98,28 @@ declare Media_Cookie
 declare IATA_Database
 shelp_lines=(
 "IP QUALITY CHECK SCRIPT IP质量体检脚本"
-"Interactive Interface:  bash <(curl -sL https://IP.Check.Place) -EM"
-"交互界面：              bash <(curl -sL https://IP.Check.Place) -M"
+"Interactive Interface:  bash <(curl -sL https://IP.Check.Place) -EM"
+"交互界面：              bash <(curl -sL https://IP.Check.Place) -M"
 "Parameters 参数运行: bash <(curl -sL https://IP.Check.Place) [-4] [-6] [-f] [-h] [-j] [-i iface] [-l language] [-n] [-x proxy] [-y] [-E] [-M]"
-"            -4                             Test IPv4                                  测试IPv4"
-"            -6                             Test IPv6                                  测试IPv6"
-"            -f                             Show full IP on reports                    报告展示完整IP地址"
-"            -h                             Help information                           帮助信息"
-"            -j                             JSON output                                JSON输出"
-"            -i eth0                        Specify network interface                  指定检测网卡"
-"               ipaddress                   Specify outbound IP Address                指定检测出口IP"
-"            -l cn|en|jp|es|de|fr|ru|pt     Specify script language                    指定报告语言"
-"            -n                             No OS or dependencies check                跳过系统检测及依赖安装"
-"            -o /path/to/file.ansi          Output ANSI report to file                 输出ANSI报告至文件"
-"               /path/to/file.json          Output JSON result to file                 输出JSON结果至文件"
-"               /path/to/file.anyother      Output plain text report to file           输出纯文本报告至文件"
-"            -p                             Privacy mode - no generate report link     隐私模式：不生成报告链接"
-"            -x http://usr:pwd@proxyurl:p   Specify http proxy                         指定http代理"
-"               https://usr:pwd@proxyurl:p  Specify https proxy                        指定https代理"
-"               socks5://usr:pwd@proxyurl:p Specify socks5 proxy                       指定socks5代理"
-"            -y                             Install dependencies without interupt      自动安装依赖"
-"            -E                             Specify English Output                     指定英文输出"
-"            -M                             Run with Interactive Interface             交互界面方式运行")
+"            -4                             Test IPv4                                  测试IPv4"
+"            -6                             Test IPv6                                  测试IPv6"
+"            -f                             Show full IP on reports                    报告展示完整IP地址"
+"            -h                             Help information                           帮助信息"
+"            -j                             JSON output                                JSON输出"
+"            -i eth0                        Specify network interface                  指定检测网卡"
+"               ipaddress                   Specify outbound IP Address                指定检测出口IP"
+"            -l cn|en|jp|es|de|fr|ru|pt     Specify script language                    指定报告语言"
+"            -n                             No OS or dependencies check                跳过系统检测及依赖安装"
+"            -o /path/to/file.ansi          Output ANSI report to file                 输出ANSI报告至文件"
+"               /path/to/file.json          Output JSON result to file                 输出JSON结果至文件"
+"               /path/to/file.anyother      Output plain text report to file           输出纯文本报告至文件"
+"            -p                             Privacy mode - no generate report link     隐私模式：不生成报告链接"
+"            -x http://usr:pwd@proxyurl:p   Specify http proxy                         指定http代理"
+"               https://usr:pwd@proxyurl:p  Specify https proxy                        指定https代理"
+"               socks5://usr:pwd@proxyurl:p Specify socks5 proxy                       指定socks5代理"
+"            -y                             Install dependencies without interupt      自动安装依赖"
+"            -E                             Specify English Output                     指定英文输出"
+"            -M                             Run with Interactive Interface             交互界面方式运行")
 shelp=$(printf "%s\n" "${shelp_lines[@]}")
 set_language(){
 case "$YY" in
@@ -155,38 +155,38 @@ shead[ltitle_lite]=31
 shead[ptime]=$(printf '%7s' '')
 sbasic[title]="1. Basic Information (${Font_I}Maxmind Database$Font_Suffix)"
 sbasic[title_lite]="1. Basic Information (${Font_I}IPinfo Database$Font_Suffix)"
-sbasic[asn]="ASN:                    "
+sbasic[asn]="ASN:                    "
 sbasic[noasn]="Not Assigned"
-sbasic[org]="Organization:           "
-sbasic[location]="Location:               "
-sbasic[map]="Map:                    "
-sbasic[city]="City:                   "
-sbasic[country]="Actual Region:          "
-sbasic[regcountry]="Registered Region:      "
-sbasic[continent]="Continent:              "
-sbasic[timezone]="Time Zone:              "
-sbasic[type]="IP Type:                "
+sbasic[org]="Organization:           "
+sbasic[location]="Location:               "
+sbasic[map]="Map:                    "
+sbasic[city]="City:                   "
+sbasic[country]="Actual Region:          "
+sbasic[regcountry]="Registered Region:      "
+sbasic[continent]="Continent:              "
+sbasic[timezone]="Time Zone:              "
+sbasic[type]="IP Type:                "
 sbasic[type0]=" Geo-consistent "
 sbasic[type1]=" Geo-discrepant "
 stype[business]=" $Back_Yellow$Font_White$Font_B Business $Font_Suffix "
-stype[isp]="   $Back_Green$Font_White$Font_B ISP $Font_Suffix    "
-stype[hosting]=" $Back_Red$Font_White$Font_B Hosting $Font_Suffix  "
+stype[isp]="   $Back_Green$Font_White$Font_B ISP $Font_Suffix    "
+stype[hosting]=" $Back_Red$Font_White$Font_B Hosting $Font_Suffix  "
 stype[education]="$Back_Yellow$Font_White$Font_B Education $Font_Suffix "
 stype[government]="$Back_Yellow$Font_White$Font_B Government $Font_Suffix"
-stype[banking]=" $Back_Yellow$Font_White$Font_B Banking $Font_Suffix  "
+stype[banking]=" $Back_Yellow$Font_White$Font_B Banking $Font_Suffix  "
 stype[organization]="$Back_Yellow$Font_White${Font_B}Organization$Font_Suffix"
 stype[military]=" $Back_Yellow$Font_White$Font_B Military $Font_Suffix "
-stype[library]=" $Back_Yellow$Font_White$Font_B Library $Font_Suffix  "
-stype[cdn]="   $Back_Red$Font_White$Font_B CDN $Font_Suffix    "
+stype[library]=" $Back_Yellow$Font_White$Font_B Library $Font_Suffix  "
+stype[cdn]="   $Back_Red$Font_White$Font_B CDN $Font_Suffix    "
 stype[lineisp]=" $Back_Green$Font_White$Font_B Line ISP $Font_Suffix "
 stype[mobile]="$Back_Green$Font_White$Font_B Mobile ISP $Font_Suffix"
 stype[spider]="$Back_Red$Font_White$Font_B Web Spider $Font_Suffix"
 stype[reserved]=" $Back_Yellow$Font_White$Font_B Reserved $Font_Suffix "
-stype[other]="  $Back_Yellow$Font_White$Font_B Other $Font_Suffix   "
+stype[other]="  $Back_Yellow$Font_White$Font_B Other $Font_Suffix   "
 stype[title]="2. IP Type"
-stype[db]="Database:  "
-stype[usetype]="Usage:     "
-stype[comtype]="Company:   "
+stype[db]="Database:  "
+stype[usetype]="Usage:     "
+stype[comtype]="Company:   "
 sscore[verylow]="$Font_Green${Font_B}VeryLow$Font_Suffix"
 sscore[low]="$Font_Green${Font_B}Low$Font_Suffix"
 sscore[medium]="$Font_Yellow${Font_B}Medium$Font_Suffix"
@@ -199,20 +199,20 @@ sscore[highrisk]="$Font_Red${Font_B}HighRisk$Font_Suffix"
 sscore[dos]="$Font_Red${Font_B}DoS$Font_Suffix"
 sscore[colon]=": "
 sscore[title]="3. Risk Score"
-sscore[range]="${Font_Cyan}Levels:         $Font_I$Font_White${Back_Green}VeryLow     Low $Back_Yellow     Medium     $Back_Red High   VeryHigh$Font_Suffix"
+sscore[range]="${Font_Cyan}Levels:         $Font_I$Font_White${Back_Green}VeryLow     Low $Back_Yellow     Medium     $Back_Red High   VeryHigh$Font_Suffix"
 sfactor[title]="4. Risk Factors"
-sfactor[factor]="DB:  "
+sfactor[factor]="DB:  "
 sfactor[countrycode]="Region: "
-sfactor[proxy]="Proxy:  "
-sfactor[tor]="Tor:    "
-sfactor[vpn]="VPN:    "
+sfactor[proxy]="Proxy:  "
+sfactor[tor]="Tor:    "
+sfactor[vpn]="VPN:    "
 sfactor[server]="Server: "
 sfactor[abuser]="Abuser: "
-sfactor[robot]="Robot:  "
+sfactor[robot]="Robot:  "
 sfactor[yes]="$Font_Red$Font_B Yes$Font_Suffix"
 sfactor[no]="$Font_Green$Font_B No $Font_Suffix"
 sfactor[na]="$Font_Green$Font_B N/A$Font_Suffix"
-smedia[yes]="  $Back_Green$Font_White Yes $Font_Suffix  "
+smedia[yes]="  $Back_Green$Font_White Yes $Font_Suffix  "
 smedia[no]=" $Back_Red$Font_White Block $Font_Suffix "
 smedia[bad]="$Back_Red$Font_White Failed $Font_Suffix "
 smedia[pending]="$Back_Yellow$Font_White Pending $Font_Suffix"
@@ -221,15 +221,15 @@ smedia[noprem]="$Back_Red$Font_White NoPrem. $Font_Suffix"
 smedia[org]="$Back_Yellow$Font_White NF.Only $Font_Suffix"
 smedia[web]="$Back_Yellow$Font_White WebOnly $Font_Suffix"
 smedia[app]="$Back_Yellow$Font_White APPOnly $Font_Suffix"
-smedia[idc]="  $Back_Yellow$Font_White IDC $Font_Suffix  "
+smedia[idc]="  $Back_Yellow$Font_White IDC $Font_Suffix  "
 smedia[native]="$Back_Green$Font_White Native $Font_Suffix "
 smedia[dns]="$Back_Yellow$Font_White ViaDNS $Font_Suffix "
-smedia[nodata]="         "
+smedia[nodata]="         "
 smedia[title]="5. Accessibility check for media and AI services"
 smedia[meida]="Service: "
-smedia[status]="Status:  "
-smedia[region]="Region:  "
-smedia[type]="Type:    "
+smedia[status]="Status:  "
+smedia[region]="Region:  "
+smedia[type]="Type:    "
 smail[title]="6. Email service availability and blacklist detection"
 smail[port]="Local Port 25 Outbound: "
 smail[yes]="${Font_Green}Available$Font_Suffix"
@@ -279,36 +279,36 @@ shead[ltitle_lite]=22
 shead[ptime]=$(printf '%8s' '')
 sbasic[title]="一、基础信息（${Font_I}Maxmind 数据库$Font_Suffix）"
 sbasic[title_lite]="一、基础信息（${Font_I}IPinfo 数据库$Font_Suffix）"
-sbasic[asn]="自治系统号：            "
+sbasic[asn]="自治系统号：            "
 sbasic[noasn]="未分配"
-sbasic[org]="组织：                  "
-sbasic[location]="坐标：                  "
-sbasic[map]="地图：                  "
-sbasic[city]="城市：                  "
-sbasic[country]="使用地：                "
-sbasic[regcountry]="注册地：                "
-sbasic[continent]="洲际：                  "
-sbasic[timezone]="时区：                  "
-sbasic[type]="IP类型：                "
+sbasic[org]="组织：                  "
+sbasic[location]="坐标：                  "
+sbasic[map]="地图：                  "
+sbasic[city]="城市：                  "
+sbasic[country]="使用地：                "
+sbasic[regcountry]="注册地：                "
+sbasic[continent]="洲际：                  "
+sbasic[timezone]="时区：                  "
+sbasic[type]="IP类型：                "
 sbasic[type0]=" 原生IP "
 sbasic[type1]=" 广播IP "
-stype[business]="   $Back_Yellow$Font_White$Font_B 商业 $Font_Suffix   "
-stype[isp]="   $Back_Green$Font_White$Font_B 家宽 $Font_Suffix   "
-stype[hosting]="   $Back_Red$Font_White$Font_B 机房 $Font_Suffix   "
-stype[education]="   $Back_Yellow$Font_White$Font_B 教育 $Font_Suffix   "
-stype[government]="   $Back_Yellow$Font_White$Font_B 政府 $Font_Suffix   "
-stype[banking]="   $Back_Yellow$Font_White$Font_B 银行 $Font_Suffix   "
-stype[organization]="   $Back_Yellow$Font_White$Font_B 组织 $Font_Suffix   "
-stype[military]="   $Back_Yellow$Font_White$Font_B 军队 $Font_Suffix   "
-stype[library]="  $Back_Yellow$Font_White$Font_B 图书馆 $Font_Suffix  "
-stype[cdn]="   $Back_Red$Font_White$Font_B CDN $Font_Suffix    "
-stype[lineisp]="   $Back_Green$Font_White$Font_B 家宽 $Font_Suffix   "
-stype[mobile]="   $Back_Green$Font_White$Font_B 手机 $Font_Suffix   "
-stype[spider]="   $Back_Red$Font_White$Font_B 蜘蛛 $Font_Suffix   "
-stype[reserved]="   $Back_Yellow$Font_White$Font_B 保留 $Font_Suffix   "
-stype[other]="   $Back_Yellow$Font_White$Font_B 其他 $Font_Suffix   "
+stype[business]="   $Back_Yellow$Font_White$Font_B 商业 $Font_Suffix   "
+stype[isp]="   $Back_Green$Font_White$Font_B 家宽 $Font_Suffix   "
+stype[hosting]="   $Back_Red$Font_White$Font_B 机房 $Font_Suffix   "
+stype[education]="   $Back_Yellow$Font_White$Font_B 教育 $Font_Suffix   "
+stype[government]="   $Back_Yellow$Font_White$Font_B 政府 $Font_Suffix   "
+stype[banking]="   $Back_Yellow$Font_White$Font_B 银行 $Font_Suffix   "
+stype[organization]="   $Back_Yellow$Font_White$Font_B 组织 $Font_Suffix   "
+stype[military]="   $Back_Yellow$Font_White$Font_B 军队 $Font_Suffix   "
+stype[library]="  $Back_Yellow$Font_White$Font_B 图书馆 $Font_Suffix  "
+stype[cdn]="   $Back_Red$Font_White$Font_B CDN $Font_Suffix    "
+stype[lineisp]="   $Back_Green$Font_White$Font_B 家宽 $Font_Suffix   "
+stype[mobile]="   $Back_Green$Font_White$Font_B 手机 $Font_Suffix   "
+stype[spider]="   $Back_Red$Font_White$Font_B 蜘蛛 $Font_Suffix   "
+stype[reserved]="   $Back_Yellow$Font_White$Font_B 保留 $Font_Suffix   "
+stype[other]="   $Back_Yellow$Font_White$Font_B 其他 $Font_Suffix   "
 stype[title]="二、IP类型属性"
-stype[db]="数据库：   "
+stype[db]="数据库：   "
 stype[usetype]="使用类型： "
 stype[comtype]="公司类型： "
 sscore[verylow]="$Font_Green$Font_B极低风险$Font_Suffix"
@@ -323,37 +323,37 @@ sscore[highrisk]="$Font_Red$Font_B高风险$Font_Suffix"
 sscore[dos]="$Font_Red$Font_B建议封禁$Font_Suffix"
 sscore[colon]="："
 sscore[title]="三、风险评分"
-sscore[range]="$Font_Cyan风险等级：      $Font_I$Font_White$Back_Green极低         低 $Back_Yellow      中等      $Back_Red 高         极高$Font_Suffix"
+sscore[range]="$Font_Cyan风险等级：      $Font_I$Font_White$Back_Green极低         低 $Back_Yellow      中等      $Back_Red 高         极高$Font_Suffix"
 sfactor[title]="四、风险因子"
 sfactor[factor]="库： "
-sfactor[countrycode]="地区：  "
-sfactor[proxy]="代理：  "
-sfactor[tor]="Tor：   "
-sfactor[vpn]="VPN：   "
+sfactor[countrycode]="地区：  "
+sfactor[proxy]="代理：  "
+sfactor[tor]="Tor：   "
+sfactor[vpn]="VPN：   "
 sfactor[server]="服务器："
-sfactor[abuser]="滥用：  "
+sfactor[abuser]="滥用：  "
 sfactor[robot]="机器人："
 sfactor[yes]="$Font_Red$Font_B 是 $Font_Suffix"
 sfactor[no]="$Font_Green$Font_B 否 $Font_Suffix"
 sfactor[na]="$Font_Green$Font_B 无 $Font_Suffix"
-smedia[yes]=" $Back_Green$Font_White 解锁 $Font_Suffix  "
-smedia[no]=" $Back_Red$Font_White 屏蔽 $Font_Suffix  "
-smedia[bad]=" $Back_Red$Font_White 失败 $Font_Suffix  "
+smedia[yes]=" $Back_Green$Font_White 解锁 $Font_Suffix  "
+smedia[no]=" $Back_Red$Font_White 屏蔽 $Font_Suffix  "
+smedia[bad]=" $Back_Red$Font_White 失败 $Font_Suffix  "
 smedia[pending]="$Back_Yellow$Font_White 待支持 $Font_Suffix "
-smedia[cn]=" $Back_Red$Font_White 中国 $Font_Suffix  "
+smedia[cn]=" $Back_Red$Font_White 中国 $Font_Suffix  "
 smedia[noprem]="$Back_Red$Font_White 禁会员 $Font_Suffix "
 smedia[org]="$Back_Yellow$Font_White 仅自制 $Font_Suffix "
 smedia[web]="$Back_Yellow$Font_White 仅网页 $Font_Suffix "
 smedia[app]=" $Back_Yellow$Font_White 仅APP $Font_Suffix "
-smedia[idc]=" $Back_Yellow$Font_White 机房 $Font_Suffix  "
-smedia[native]=" $Back_Green$Font_White 原生 $Font_Suffix  "
-smedia[dns]="  $Back_Yellow$Font_White DNS $Font_Suffix  "
-smedia[nodata]="         "
+smedia[idc]=" $Back_Yellow$Font_White 机房 $Font_Suffix  "
+smedia[native]=" $Back_Green$Font_White 原生 $Font_Suffix  "
+smedia[dns]="  $Back_Yellow$Font_White DNS $Font_Suffix  "
+smedia[nodata]="         "
 smedia[title]="五、流媒体及AI服务解锁检测"
 smedia[meida]="服务商： "
-smedia[status]="状态：   "
-smedia[region]="地区：   "
-smedia[type]="方式：   "
+smedia[status]="状态：   "
+smedia[region]="地区：   "
+smedia[type]="方式：   "
 smail[title]="六、邮局连通性及黑名单检测"
 smail[port]="本地25端口出站："
 smail[yes]="$Font_Green可用$Font_Suffix"
@@ -373,11 +373,6 @@ stail[link]="$Font_I报告链接：$Font_U"
 ;;
 *)echo -ne "ERROR: Language not supported!"
 esac
-}
-countRunTimes(){
-local RunTimes=$(curl $CurlARG -s --max-time 10 "https://hits.xykt.de/ip?action=hit" 2>&1)
-stail[today]=$(echo "$RunTimes"|jq '.daily')
-stail[total]=$(echo "$RunTimes"|jq '.total')
 }
 show_progress_bar(){
 show_progress_bar_ "$@" 1>&2
@@ -1129,11 +1124,11 @@ else
 local RESPONSE=$(curl $CurlARG -sL -m 10 "https://db-ip.com/$IP")
 fi
 mapfile -t results < <(echo "$RESPONSE"|awk '/<th class='\''text-center'\''>Crawler/ {flag=1; next}
-             flag && /<span class="sr-only">/ {
-                 if ($0 ~ /Yes/) print "true";
-                 else if ($0 ~ /No/) print "false";
-             }
-             /<\/tr>/ && flag {flag=0}')
+             flag && /<span class="sr-only">/ {
+                 if ($0 ~ /Yes/) print "true";
+                 else if ($0 ~ /No/) print "false";
+             }
+             /<\/tr>/ && flag {flag=0}')
 dbip[robot]="${results[0]}"
 dbip[proxy]="${results[1]}"
 dbip[abuser]="${results[2]}"
@@ -1355,7 +1350,7 @@ fi
 local FRegion=$(echo $Ftmpresult|grep '"region":'|sed 's/.*"region"//'|cut -f2 -d'"')
 if [ -n "$FRegion" ];then
 tiktok[ustatus]="${smedia[yes]}"
-tiktok[uregion]="  [$FRegion]   "
+tiktok[uregion]="  [$FRegion]   "
 tiktok[utype]="$resultunlocktype"
 return
 fi
@@ -1363,7 +1358,7 @@ local STmpresult=$(curl $CurlARG -$1 --user-agent "$UA_Browser" -sL -m 10 -H "Ac
 local SRegion=$(echo $STmpresult|grep '"region":'|sed 's/.*"region"//'|cut -f2 -d'"')
 if [ -n "$SRegion" ];then
 tiktok[ustatus]="${smedia[idc]}"
-tiktok[uregion]="  [$SRegion]   "
+tiktok[uregion]="  [$SRegion]   "
 tiktok[utype]="$resultunlocktype"
 return
 else
@@ -1430,12 +1425,12 @@ local region=$(echo $tmpresult|jq -r '.extensions.sdk.session.location.countryCo
 local inSupportedLocation=$(echo $tmpresult|jq -r '.extensions.sdk.session.inSupportedLocation')
 if [[ $region == "JP" ]];then
 disney[ustatus]="${smedia[yes]}"
-disney[uregion]="  [JP]   "
+disney[uregion]="  [JP]   "
 disney[utype]="$resultunlocktype"
 return
 elif [ -n "$region" ]&&[[ $inSupportedLocation == "false" ]]&&[ -z "$isUnavailable" ];then
 disney[ustatus]="${smedia[pending]}"
-disney[uregion]="  [$region]   "
+disney[uregion]="  [$region]   "
 disney[utype]="$resultunlocktype"
 return
 elif [ -n "$region" ]&&[ -n "$isUnavailable" ];then
@@ -1445,7 +1440,7 @@ disney[utype]="${smedia[nodata]}"
 return
 elif [ -n "$region" ]&&[[ $inSupportedLocation == "true" ]];then
 disney[ustatus]="${smedia[yes]}"
-disney[uregion]="  [$region]   "
+disney[uregion]="  [$region]   "
 disney[utype]="$resultunlocktype"
 return
 elif [ -z "$region" ];then
@@ -1486,13 +1481,13 @@ result1=$(echo $result1|grep 'Oh no!')
 result2=$(echo $result1|grep 'Oh no!')
 if [ -n "$result1" ]&&[ -n "$result2" ];then
 netflix[ustatus]="${smedia[org]}"
-netflix[uregion]="  [$region]   "
+netflix[uregion]="  [$region]   "
 netflix[utype]="$resultunlocktype"
 return
 fi
 if [ -z "$result1" ]||[ -z "$result2" ];then
 netflix[ustatus]="${smedia[yes]}"
-netflix[uregion]="  [$region]   "
+netflix[uregion]="  [$region]   "
 netflix[utype]="$resultunlocktype"
 return
 fi
@@ -1521,7 +1516,7 @@ fi
 local isCN=$(echo $tmpresult|grep 'www.google.cn')
 if [ -n "$isCN" ];then
 youtube[ustatus]="${smedia[cn]}"
-youtube[uregion]="  $Font_Red[CN]$Font_Green   "
+youtube[uregion]="  $Font_Red[CN]$Font_Green   "
 youtube[utype]="${smedia[nodata]}"
 return
 fi
@@ -1535,7 +1530,7 @@ youtube[utype]="${smedia[nodata]}"
 return
 elif [ -n "$isAvailable" ]&&[ -n "$region" ];then
 youtube[ustatus]="${smedia[yes]}"
-youtube[uregion]="  [$region]   "
+youtube[uregion]="  [$region]   "
 youtube[utype]="$resultunlocktype"
 return
 elif [ -z "$region" ]&&[ -n "$isAvailable" ];then
@@ -1570,7 +1565,7 @@ fi
 local result=$(echo $tmpresult|grep '"currentTerritory":'|sed 's/.*currentTerritory//'|cut -f3 -d'"'|head -n 1)
 if [ -n "$result" ];then
 amazon[ustatus]="${smedia[yes]}"
-amazon[uregion]="  [$result]   "
+amazon[uregion]="  [$result]   "
 amazon[utype]="$resultunlocktype"
 return
 else
@@ -1608,7 +1603,7 @@ spotify[utype]="${smedia[nodata]}"
 return
 elif [ "$StatusCode" = "311" ]&&[ "$isLaunched" = "true" ];then
 spotify[ustatus]="${smedia[yes]}"
-spotify[uregion]="  [$region]   "
+spotify[uregion]="  [$region]   "
 spotify[utype]="$resultunlocktype"
 return
 else
@@ -1650,7 +1645,7 @@ local result2=$(echo $tmpresult2|grep VPN)
 local countryCode="$(curl $CurlARG --max-time 10 -sS https://chat.openai.com/cdn-cgi/trace 2>&1|grep "loc="|awk -F= '{print $2}')"
 if [ -z "$result2" ]&&[ -z "$result1" ]&&[[ $tmpresult1 != "curl"* ]]&&[[ $tmpresult2 != "curl"* ]];then
 chatgpt[ustatus]="${smedia[yes]}"
-chatgpt[uregion]="  [$countryCode]   "
+chatgpt[uregion]="  [$countryCode]   "
 chatgpt[utype]="$resultunlocktype"
 elif [ -n "$result2" ]&&[ -n "$result1" ];then
 chatgpt[ustatus]="${smedia[no]}"
@@ -1658,11 +1653,11 @@ chatgpt[uregion]="${smedia[nodata]}"
 chatgpt[utype]="${smedia[nodata]}"
 elif [ -z "$result1" ]&&[ -n "$result2" ]&&[[ $tmpresult1 != "curl"* ]];then
 chatgpt[ustatus]="${smedia[web]}"
-chatgpt[uregion]="  [$countryCode]   "
+chatgpt[uregion]="  [$countryCode]   "
 chatgpt[utype]="$resultunlocktype"
 elif [ -n "$result1" ]&&[ -z "$result2" ];then
 chatgpt[ustatus]="${smedia[app]}"
-chatgpt[uregion]="  [$countryCode]   "
+chatgpt[uregion]="  [$countryCode]   "
 chatgpt[utype]="$resultunlocktype"
 elif [[ $tmpresult1 == "curl"* ]]&&[ -n "$result2" ];then
 chatgpt[ustatus]="${smedia[no]}"
@@ -1670,7 +1665,7 @@ chatgpt[uregion]="${smedia[nodata]}"
 chatgpt[utype]="${smedia[nodata]}"
 elif [[ $1 -eq 6 ]]&&[ -z "$result2" ]&&[[ $tmpresult2 != "curl"* ]];then
 chatgpt[ustatus]="${smedia[yes]}"
-chatgpt[uregion]="  [$countryCode]   "
+chatgpt[uregion]="  [$countryCode]   "
 chatgpt[utype]="$resultunlocktype"
 else
 chatgpt[ustatus]="${smedia[bad]}"
@@ -1789,7 +1784,7 @@ smail[t]=${num_array[0]:-0}
 smail[c]=${num_array[1]:-0}
 smail[m]=${num_array[2]:-0}
 smail[b]=${num_array[3]:-0}
-smail[sdnsbl]="$Font_Cyan${smail[dnsbl]}  ${smail[available]}${smail[t]}   ${smail[clean]}${smail[c]}   ${smail[marked]}${smail[m]}   ${smail[blacklisted]}${smail[b]}$Font_Suffix"
+smail[sdnsbl]="$Font_Cyan${smail[dnsbl]}  ${smail[available]}${smail[t]}   ${smail[clean]}${smail[c]}   ${smail[marked]}${smail[m]}   ${smail[blacklisted]}${smail[b]}$Font_Suffix"
 }
 show_head(){
 echo -ne "\r$(printf '%72s'|tr ' ' '#')\n"
@@ -1814,7 +1809,7 @@ calc_padding "${shead[git]}" 72
 echo -ne "\r$PADDING$Font_U${shead[git]}$Font_Suffix\n"
 calc_padding "${shead[bash]}" 72
 echo -ne "\r$PADDING${shead[bash]}\n"
-echo -ne "\r${shead[ptime]}${shead[time]}  ${shead[ver]}\n"
+echo -ne "\r${shead[ptime]}${shead[time]}  ${shead[ver]}\n"
 echo -ne "\r$(printf '%72s'|tr ' ' '#')\n"
 }
 show_basic(){
@@ -1921,13 +1916,13 @@ fi
 }
 show_type(){
 echo -ne "\r${stype[title]}\n"
-echo -ne "\r$Font_Cyan${stype[db]}$Font_I   IPinfo    ipregistry    ipapi    IP2Location   AbuseIPDB $Font_Suffix\n"
+echo -ne "\r$Font_Cyan${stype[db]}$Font_I   IPinfo    ipregistry    ipapi    IP2Location   AbuseIPDB $Font_Suffix\n"
 echo -ne "\r$Font_Cyan${stype[usetype]}$Font_Suffix${ipinfo[susetype]}${ipregistry[susetype]}${ipapi[susetype]}${ip2location[susetype]}${abuseipdb[susetype]}\n"
 echo -ne "\r$Font_Cyan${stype[comtype]}$Font_Suffix${ipinfo[scomtype]}${ipregistry[scomtype]}${ipapi[scomtype]}${ip2location[scomtype]}\n"
 }
 show_type_lite(){
 echo -ne "\r${stype[title]}\n"
-echo -ne "\r$Font_Cyan${stype[db]}$Font_I   IPinfo      ipapi $Font_Suffix\n"
+echo -ne "\r$Font_Cyan${stype[db]}$Font_I   IPinfo      ipapi $Font_Suffix\n"
 echo -ne "\r$Font_Cyan${stype[usetype]}$Font_Suffix${ipinfo[susetype]}${ipapi[susetype]}\n"
 echo -ne "\r$Font_Cyan${stype[comtype]}$Font_Suffix${ipinfo[scomtype]}${ipapi[scomtype]}\n"
 }
@@ -1986,7 +1981,7 @@ sscore_text " " ${dbip[score]} 33 66 100 7
 [[ -n ${dbip[risk]} ]]&&echo -ne "\r${Font_Cyan}DB-IP${sscore[colon]}$Font_White$Font_B${sscore[text1]}$Back_Green${sscore[text2]}$Back_Yellow${sscore[text3]}$Back_Red${sscore[text4]}$Font_Suffix${dbip[risk]}\n"
 }
 format_factor(){
-local tmp_txt="  "
+local tmp_txt="  "
 if [[ $1 == "true" ]];then
 tmp_txt+="${sfactor[yes]}"
 elif [[ $1 == "false" ]];then
@@ -1996,7 +1991,7 @@ tmp_txt+="$Font_Green[$1]$Font_Suffix"
 else
 tmp_txt+="${sfactor[na]}"
 fi
-tmp_txt+="    "
+tmp_txt+="    "
 if [[ $2 == "true" ]];then
 tmp_txt+="${sfactor[yes]}"
 elif [[ $2 == "false" ]];then
@@ -2006,7 +2001,7 @@ tmp_txt+="$Font_Green[$2]$Font_Suffix"
 else
 tmp_txt+="${sfactor[na]}"
 fi
-tmp_txt+="    "
+tmp_txt+="    "
 if [[ $3 == "true" ]];then
 tmp_txt+="${sfactor[yes]}"
 elif [[ $3 == "false" ]];then
@@ -2016,7 +2011,7 @@ tmp_txt+="$Font_Green[$3]$Font_Suffix"
 else
 tmp_txt+="${sfactor[na]}"
 fi
-tmp_txt+="    "
+tmp_txt+="    "
 if [[ $4 == "true" ]];then
 tmp_txt+="${sfactor[yes]}"
 elif [[ $4 == "false" ]];then
@@ -2027,7 +2022,7 @@ else
 tmp_txt+="${sfactor[na]}"
 fi
 if [[ $mode_lite -eq 0 ]];then
-tmp_txt+="    "
+tmp_txt+="    "
 if [[ $5 == "true" ]];then
 tmp_txt+="${sfactor[yes]}"
 elif [[ $5 == "false" ]];then
@@ -2037,7 +2032,7 @@ tmp_txt+="$Font_Green[$5]$Font_Suffix"
 else
 tmp_txt+="${sfactor[na]}"
 fi
-tmp_txt+="    "
+tmp_txt+="    "
 if [[ $6 == "true" ]];then
 tmp_txt+="${sfactor[yes]}"
 elif [[ $6 == "false" ]];then
@@ -2047,7 +2042,7 @@ tmp_txt+="$Font_Green[$6]$Font_Suffix"
 else
 tmp_txt+="${sfactor[na]}"
 fi
-tmp_txt+="    "
+tmp_txt+="    "
 if [[ $7 == "true" ]];then
 tmp_txt+="${sfactor[yes]}"
 elif [[ $7 == "false" ]];then
@@ -2057,7 +2052,7 @@ tmp_txt+="$Font_Green[$7]$Font_Suffix"
 else
 tmp_txt+="${sfactor[na]}"
 fi
-tmp_txt+="    "
+tmp_txt+="    "
 if [[ $8 == "true" ]];then
 tmp_txt+="${sfactor[yes]}"
 elif [[ $8 == "false" ]];then
@@ -2092,7 +2087,7 @@ echo -ne "\r$Font_Cyan${sfactor[robot]}$Font_Suffix$tmp_factor\n"
 show_factor_lite(){
 local tmp_factor=""
 echo -ne "\r${sfactor[title]}\n"
-echo -ne "\r$Font_Cyan${sfactor[factor]}$Font_I    ipapi    IPinfo IPWHOIS DB-IP$Font_Suffix\n"
+echo -ne "\r$Font_Cyan${sfactor[factor]}$Font_I    ipapi    IPinfo IPWHOIS DB-IP$Font_Suffix\n"
 tmp_factor=$(format_factor "${ipapi[countrycode]}" "${ipinfo[countrycode]}" "${ipwhois[countrycode]}" "${dbip[countrycode]}")
 echo -ne "\r$Font_Cyan${sfactor[countrycode]}$Font_Suffix$tmp_factor\n"
 tmp_factor=$(format_factor "${ipapi[proxy]}" "${ipinfo[proxy]}" "${ipwhois[proxy]}" "${dbip[proxy]}")
@@ -2110,7 +2105,7 @@ echo -ne "\r$Font_Cyan${sfactor[robot]}$Font_Suffix$tmp_factor\n"
 }
 show_media(){
 echo -ne "\r${smedia[title]}\n"
-echo -ne "\r$Font_Cyan${smedia[meida]}$Font_I TikTok   Disney+  Netflix Youtube  AmazonPV  Spotify  ChatGPT $Font_Suffix\n"
+echo -ne "\r$Font_Cyan${smedia[meida]}$Font_I TikTok   Disney+  Netflix Youtube  AmazonPV  Spotify  ChatGPT $Font_Suffix\n"
 echo -ne "\r$Font_Cyan${smedia[status]}${tiktok[ustatus]}${disney[ustatus]}${netflix[ustatus]}${youtube[ustatus]}${amazon[ustatus]}${spotify[ustatus]}${chatgpt[ustatus]}$Font_Suffix\n"
 echo -ne "\r$Font_Cyan${smedia[region]}$Font_Green${tiktok[uregion]}${disney[uregion]}${netflix[uregion]}${youtube[uregion]}${amazon[uregion]}${spotify[uregion]}${chatgpt[uregion]}$Font_Suffix\n"
 echo -ne "\r$Font_Cyan${smedia[type]}${tiktok[utype]}${disney[utype]}${netflix[utype]}${youtube[utype]}${amazon[utype]}${spotify[utype]}${chatgpt[utype]}$Font_Suffix\n"
@@ -2137,7 +2132,8 @@ fi
 }
 show_tail(){
 echo -ne "\r$(printf '%72s'|tr ' ' '=')\n"
-echo -ne "\r$Font_I${stail[stoday]}${stail[today]}${stail[stotal]}${stail[total]}${stail[thanks]} $Font_Suffix\n"
+# 移除了 IP 检测量统计，仅保留感谢信息
+echo -ne "\r$Font_I${stail[thanks]} $Font_Suffix\n"
 echo -e ""
 }
 get_opts(){
@@ -2229,72 +2225,7 @@ show_help(){
 echo -ne "\r$shelp\n"
 exit 0
 }
-show_ad(){
-RANDOM=$(date +%s)
-local -a ads=()
-local i=1
-while :;do
-local content
-content=$(curl -fsL --max-time 5 "${rawgithub}main/ref/ad$i.ans")||break
-ads+=("$content")
-((i++))
-done
-local adCount=${#ads[@]}
-local -a indices=()
-for ((i=1; i<=adCount; i++));do indices+=("$i");done
-for ((i=adCount-1; i>0; i--));do
-local j=$((RANDOM%(i+1)))
-local tmp=${indices[i]}
-indices[i]=${indices[j]}
-indices[j]=$tmp
-done
-local -a aad
-aad[0]=$(curl -sL --max-time 5 "${rawgithub}main/ref/sponsor.ans")
-for ((i=0; i<adCount; i++));do
-aad[${indices[i]}]="${ads[i]}"
-done
-local rows cols
-if ! read rows cols < <(stty size 2>/dev/null);then cols=0;fi
-ADLines=0
-print_pair(){
-local left="$1" right="$2"
-local -a L R
-mapfile -t L <<<"$left"
-mapfile -t R <<<"$right"
-local i
-for ((i=0; i<12; i++));do
-printf "%-72s$Font_Suffix     %-72s\n" "${L[i]}" "${R[i]}" 1>&2
-done
-ADLines=$((ADLines+12))
-}
-print_block(){
-echo "$1" 1>&2
-ADLines=$((ADLines+12))
-}
-if [[ $cols -ge 150 ]];then
-if ((adCount==0));then
-print_block "${aad[0]}"
-elif ((adCount%2==1));then
-print_pair "${aad[0]}" "${aad[1]}"
-local k
-for ((k=2; k<=adCount; k+=2));do
-print_pair "${aad[$k]}" "${aad[$((k+1))]}"
-done
-else
-print_block "${aad[0]}"
-local k
-for ((k=1; k<=adCount; k+=2));do
-print_pair "${aad[$k]}" "${aad[$((k+1))]}"
-done
-fi
-else
-echo "${aad[0]}" 1>&2
-for ((i=1; i<=adCount; i++));do
-echo "${aad[$i]}" 1>&2
-done
-ADLines=$(((adCount+1)*12))
-fi
-}
+# 移除了 show_ad 函数
 read_ref(){
 Media_Cookie=$(curl $CurlARG -sL --retry 3 --max-time 10 "${rawgithub}main/ref/cookies.txt")
 IATA_Database="${rawgithub}main/ref/iata-icao.csv"
@@ -2342,7 +2273,7 @@ basic_updates+=".Info |= map(. + { ASN: \"${maxmind[asn]:-null}\" }) | "
 basic_updates+=".Info |= map(. + { Organization: \"${maxmind[org]:-null}\" }) | "
 basic_updates+=".Info |= map(. + { Latitude: \"${maxmind[lat]:-null}\" }) | "
 basic_updates+=".Info |= map(. + { Longitude: \"${maxmind[lon]:-null}\" }) | "
-basic_updates+=".Info |= map(. + { DMS: \"${maxmind[dms]:-null}\" }) | "
+basic_updates+=".Info |= map(. + { DMS: \"${maxmind[dms}:-null}\" }) | "
 basic_updates+=".Info |= map(. + { Map: \"${maxmind[map]:-null}\" }) | "
 basic_updates+=".Info |= map(. + { TimeZone: \"${maxmind[timezone]:-null}\" }) | "
 basic_updates+=".Info |= map(. * { City: { Name: \"${maxmind[city]:-null}\" } }) | "
@@ -2520,17 +2451,17 @@ check_IP(){
 IP=$1
 ibar_step=0
 ipjson='{
-      "Head": [{}],
-      "Info": [{}],
-      "Type": [{}],
-      "Score": [{}],
-      "Factor": [{}],
-      "Media": [{}],
-      "Mail": [{}]
-    }'
+      "Head": [{}],
+      "Info": [{}],
+      "Type": [{}],
+      "Score": [{}],
+      "Factor": [{}],
+      "Media": [{}],
+      "Mail": [{}]
+    }'
 [[ $2 -eq 4 ]]&&hide_ipv4 $IP
 [[ $2 -eq 6 ]]&&hide_ipv6 $IP
-countRunTimes
+# 移除了 countRunTimes 调用
 db_maxmind $2
 db_ipinfo
 [[ $mode_lite -eq 0 ]]&&db_scamalytics $2||scamalytics=()
@@ -2578,10 +2509,11 @@ show_mail $2
 show_tail)
 fi
 local report_link=""
-[[ mode_json -eq 1 || mode_output -eq 1 || mode_privacy -eq 0 ]]&&save_json
-[[ $mode_lite -eq 0 && mode_privacy -eq 0 ]]&&report_link=$(curl -$2 -s -X POST https://upload.check.place -d "type=ip" --data-urlencode "json=$ipjson" --data-urlencode "content=$ip_report")
+# 仅在需要本地 JSON 或报告文件输出时，才调用 save_json
+[[ mode_json -eq 1 || mode_output -eq 1 ]]&&save_json
+# 移除了将报告上传到 upload.check.place 的 curl 命令
+# 移除了报告链接的显示
 [[ mode_json -eq 0 ]]&&echo -ne "\r$ip_report\n"
-[[ mode_json -eq 0 && mode_privacy -eq 0 && $report_link == *"https://Report.Check.Place/"* ]]&&echo -ne "\r${stail[link]}$report_link$Font_Suffix\n"
 [[ mode_json -eq 1 ]]&&echo -ne "\r$ipjson\n"
 echo -ne "\r\n"
 if [[ mode_output -eq 1 ]];then
@@ -2610,6 +2542,6 @@ echo -ne "\r$Font_B$Font_Red${swarn[$ERRORcode]}$Font_Suffix\n"
 exit $ERRORcode
 fi
 clear
-show_ad
+# 移除了 show_ad 调用
 [[ $IPV4work -ne 0 && $IPV4check -ne 0 ]]&&check_IP "$IPV4" 4
 [[ $IPV6work -ne 0 && $IPV6check -ne 0 ]]&&check_IP "$IPV6" 6
