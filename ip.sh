@@ -5,7 +5,7 @@ current_bash_version=$(bash --version|head -n 1|awk -F ' ' '{for (i=1; i<=NF; i+
 if [ "$current_bash_version" = "0" ]||[ "$current_bash_version" = "1" ]||[ "$current_bash_version" = "2" ]||[ "$current_bash_version" = "3" ];then
 echo "ERROR: Bash version is lower than 4.0!"
 echo "Tips: Run the following script to automatically upgrade Bash."
-echo "bash <(curl -sL https://raw.githubusercontent.com/xykt/IPQuality/main/ref/upgrade_bash.sh)"
+echo "bash <(curl -sL https://raw.githubusercontent.com/nasty23/IPQuality/main/ref/upgrade_bash.sh)"
 exit 0
 fi
 }
